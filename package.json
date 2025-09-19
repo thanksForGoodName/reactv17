@@ -44,10 +44,18 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "eslint-config-prettier": "^10.1.8",
     "husky": ">=6",
     "lint-staged": ">=10",
     "prettier": "3.6.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "lint-staged": {
     "*.{js,css,md,ts,tsx}": "prettier --write"
