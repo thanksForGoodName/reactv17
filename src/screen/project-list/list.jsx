@@ -15,8 +15,8 @@ export const List = ({ list, users }) => {
           <tr key={project.id}>
             <td>{project.name}</td>
             <td>
-              {users.find((user) => user.id === project.personId)?.name ||
-                "未知"}
+              {users.find((user) => user.id === String(project.personId))
+                ?.name || "未知"}
             </td>
           </tr>
         ))}

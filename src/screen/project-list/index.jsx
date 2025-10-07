@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { SearchPanel } from "./search-panel";
 import { List } from "./list";
+import { cleanObject } from "../../utils";
+import QueryString from "qs";
 
 //npm start时会使用.env.development中的
 //npm run build 时会使用.env中的
@@ -16,7 +18,7 @@ export const ProjectListScreen = () => {
 
   useEffect(() => {
     fetch(
-      `${apiUrl}/projects?name=${param.name}&personId=${param.personId}`,
+      `${apiUrl}/projects?${QueryString.stringify(cleanObject(param))}`
     ).then(async (response) => {
       if (response.ok) {
         setList(await response.json());
