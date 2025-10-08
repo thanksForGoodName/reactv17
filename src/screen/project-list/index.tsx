@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SearchPanel } from "./search-panel";
 import { List } from "./list";
-import { cleanObject } from "../../utils";
+import { useMount, cleanObject, useDebounce } from "../../utils";
 import QueryString from "qs";
 
 //npm start时会使用.env.development中的
@@ -16,23 +16,27 @@ export const ProjectListScreen = () => {
   const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
 
+  const debounceParams = useDebounce(param, 200);
+
+  //在param变化时，重新获取列表
   useEffect(() => {
     fetch(
-      `${apiUrl}/projects?${QueryString.stringify(cleanObject(param))}`
+      `${apiUrl}/projects?${QueryString.stringify(cleanObject(debounceParams))}`
     ).then(async (response) => {
       if (response.ok) {
         setList(await response.json());
       }
     });
-  }, [param]);
+  }, [debounceParams]);
 
-  useEffect(() => {
+  //只在组件挂载时获取用户列表一次
+  useMount(() => {
     fetch(`${apiUrl}/users`).then(async (response) => {
       if (response.ok) {
         setUsers(await response.json());
       }
     });
-  }, []);
+  });
 
   return (
     <div>

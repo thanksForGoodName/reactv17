@@ -1,7 +1,15 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { User } from "./list";
 
-export const SearchPanel = ({ users, param, setParam }) => {
+export interface SearchPanelProps {
+  users: User[];
+  param: {
+    name: string;
+    personId: string;
+  };
+  setParam: (param: { name: string; personId: string }) => void;
+}
+
+export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
   return (
     <form action="">
       <div>
@@ -20,7 +28,7 @@ export const SearchPanel = ({ users, param, setParam }) => {
           onChange={(evt) =>
             setParam({
               ...param,
-              personId: evt.target.value,
+              personId: String(evt.target.value),
             })
           }
         >
