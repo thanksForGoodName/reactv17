@@ -30,21 +30,19 @@ export const LoginScreen = () => {
     const password = (event.currentTarget.elements[1] as HTMLInputElement)
       .value;
 
-    login(username, password);
+    login({ username, password });
   };
 
-  const login = (username: string, password: string) => {
-    fetch(
-      `${apiUrl}/projects?${QueryString.stringify({ username, password })}`,
-      {
-        method: "POST",
-        headers: {
-          'Content-type'
-        },
+  const login = (param: { username: string; password: string }) => {
+    fetch(`${apiUrl}/login`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
       },
-    ).then(async (response) => {
+      body: JSON.stringify(param),
+    }).then(async (response) => {
       if (response.ok) {
-        setList(await response.json());
+        alert(`${param.username}登录成功`);
       }
     });
   };
