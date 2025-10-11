@@ -6,7 +6,7 @@ import { ProjectListScreen } from "./screen/project-list";
 function App() {
   return (
     <div className="App">
-      <LoginScreen />
+      <ProjectListScreen />
     </div>
   );
 }

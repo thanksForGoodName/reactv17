@@ -1,5 +1,5 @@
 {
-  "users": [
+  "members": [
     {
       "id": 1,
       "name": "高修文"
@@ -52,6 +52,19 @@
       "personId": 4,
       "organization": "外卖组",
       "created": 1546900800000
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "wyy",
+      "password": "123456",
+      "token": "mock-token-1760154961785"
+    },
+    {
+      "id": 2,
+      "username": "wyy1",
+      "password": "123456"
     }
   ]
 }

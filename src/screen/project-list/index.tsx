@@ -21,7 +21,7 @@ export const ProjectListScreen = () => {
   //在param变化时，重新获取列表
   useEffect(() => {
     fetch(
-      `${apiUrl}/projects?${QueryString.stringify(cleanObject(debounceParams))}`
+      `${apiUrl}/projects?${QueryString.stringify(cleanObject(debounceParams))}`,
     ).then(async (response) => {
       if (response.ok) {
         setList(await response.json());
@@ -31,7 +31,7 @@ export const ProjectListScreen = () => {
 
   //只在组件挂载时获取用户列表一次
   useMount(() => {
-    fetch(`${apiUrl}/users`).then(async (response) => {
+    fetch(`${apiUrl}/members`).then(async (response) => {
       if (response.ok) {
         setUsers(await response.json());
       }
