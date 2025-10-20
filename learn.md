@@ -16,20 +16,26 @@
 ==================================================================================
 
 react的工程化/组件化开发
-我们可以基于webpack等构建工具去搭建一套工程化打包的架子，但是这样非常的麻烦/复杂，react官方为我们提供了一个脚手架：create-react-app
-
-- 脚手架: 基于它创建项目，默认就把webpack打包规则配置好了，把项目需要的基本文件也给创建好了
+我们可以基于webpack等构建工具去搭建一套工程化打包的架子，但是这样非常的麻烦/复杂，react官方为我们提供了一个脚手架：create-react-app 「but 官方在v19后放弃了这个使用方便的脚手架！」
 
 ## React项目初始创建
 
-- 方法1：基于create-react-app创建
-  - 安装最新版本脚手架：
-    npm install react react-dom
-  - 安装指定版本脚手架：如17.0.0
-    npm install react@17.0.0 react-dom@17.0.0
-  - 如果使用yarn来安装：
-    latest version：yarn add react react-dom
-    specific version (如17.0.0)：yarn add react@17.0.0 react-dom@17.0.0
+### creact-react-app不再支持
+
+x 安装create-react-app No!no!no!no!
+
+上述都不可用哈，v19后，creat-react-app 不再支持，具体详见https://zh-hans.react.dev/blog/2025/02/14/sunsetting-create-react-app
+
+如果是在原来的旧版本react项目基础上进行升级的话，可以参考：https://zh-hans.react.dev/learn/add-react-to-an-existing-project
+
+### Next.js(App Router)
+
+v19后官方推荐使用的react框架————Next.js ！！ 是个全栈框架
+Next.js 的 App Router 是一个 React 框架，充分利用了 React 的架构，支持全栈 React 应用。
+Next.js 由 Vercel 维护。你可以 将 Next.js 应用部署 到任何支持 Node.js 或 Docker 容器的托管平台，或者部署到你自己的服务器。 Next.js 也支持 静态导出 无需服务器。
+
+初始化项目：
+npx create-next-app@latest
 
 ## 本项目中所使用到的工具
 
@@ -321,6 +327,8 @@ function 长连接示例() {
 ```
 
 ## zustand（React）
+
+官网https://awesomedevin.github.io/zustand-vue/docs/basic/middleware
 
 ### 优势
 
