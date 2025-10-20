@@ -1,5 +1,36 @@
 # React Rules
 
+## React的解决的问题
+
+组件化开发
+
+- 如何划分组件
+  - 业务组件，针对项目需求封装的
+    1.  普通业务组件「没有复用性，只是单纯作为一个模块拆解出来」
+    2.  通用业务组件 「具备复用性」
+  - 功能组件 适用多个项目「例如：UI组件库中的组件」
+
+- 因为组件化开发，必然会带来“工程化”的处理
+  也就是基于webpack等构建工具「vite/rollup/turbopack」对项目进行打包、压缩、代码分割等处理
+
+==================================================================================
+
+react的工程化/组件化开发
+我们可以基于webpack等构建工具去搭建一套工程化打包的架子，但是这样非常的麻烦/复杂，react官方为我们提供了一个脚手架：create-react-app
+
+- 脚手架: 基于它创建项目，默认就把webpack打包规则配置好了，把项目需要的基本文件也给创建好了
+
+## React项目初始创建
+
+- 方法1：基于create-react-app创建
+  - 安装最新版本脚手架：
+    npm install react react-dom
+  - 安装指定版本脚手架：如17.0.0
+    npm install react@17.0.0 react-dom@17.0.0
+  - 如果使用yarn来安装：
+    latest version：yarn add react react-dom
+    specific version (如17.0.0)：yarn add react@17.0.0 react-dom@17.0.0
+
 ## 本项目中所使用到的工具
 
 ## React 组件重新渲染的时机主要有以下几种
@@ -286,5 +317,63 @@ function 长连接示例() {
   setTimeout(() => {
     socket.send("10分钟后仍然使用同一个连接");
   }, 600000);
+}
+```
+
+## zustand（React）
+
+### 优势
+
+为什么是zustand 而不是 redux？
+
+- 轻巧灵活
+- 将hooks作为消费状态的主要手段
+- 不需要使用 context provider 包裹你的应用程序
+- 可以做到瞬时更新（不引起组件渲染完成更新过程）
+
+为什么是 zustand 而不是 react Context？
+
+- 不依赖 react 上下文，引用更加灵活
+- 当状态发生变化时 重新渲染的组件更少
+- 集中的、基于操作的状态管理
+
+### 安装
+
+npm i zustand
+
+### store初始化
+
+创建的store是一个hook，你可以放任何东西到里面：基础变量， 对象，函数， 状态必须不可改变地更新，set函数合并状态以实现状态更新。
+
+```javascript
+import { create } from "zustand";
+
+const useBearStore = create((set) => ({
+  bears: 0,
+  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 }),
+}));
+```
+
+### store绑定组件
+
+可以在任何地方使用钩子，不需要提供provider
+基于selector获取您的目标状态
+
+- 选择目标状态：bears
+
+```javascript
+function BaseCounter() {
+  const bears = useBearStore((state) => state.bears);
+  return <h1>{bears} around here</h1>;
+}
+```
+
+- 更新目标状态：bears
+
+```javascript
+function Controls() {
+  const increasePopulation = useBearStore((state) => state.increasePopulation);
+  return <button onClick={increasePopulation}>one up</button>;
 }
 ```
