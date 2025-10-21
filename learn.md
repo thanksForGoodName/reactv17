@@ -30,12 +30,18 @@ x 安装create-react-app No!no!no!no!
 
 ### Next.js(App Router)
 
+React官网（附next学习资料）：https://zh-hans.react.dev/learn/creating-a-react-app
+
 v19后官方推荐使用的react框架————Next.js ！！ 是个全栈框架
 Next.js 的 App Router 是一个 React 框架，充分利用了 React 的架构，支持全栈 React 应用。
 Next.js 由 Vercel 维护。你可以 将 Next.js 应用部署 到任何支持 Node.js 或 Docker 容器的托管平台，或者部署到你自己的服务器。 Next.js 也支持 静态导出 无需服务器。
 
 初始化项目：
 npx create-next-app@latest
+
+### Vite(React Router) 浩哥推荐新手学习react使用
+
+React官网（附vite学习资料）：https://zh-hans.react.dev/learn/build-a-react-app-from-scratch
 
 ## 本项目中所使用到的工具
 
