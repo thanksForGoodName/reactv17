@@ -391,3 +391,10 @@ function Controls() {
   return <button onClick={increasePopulation}>one up</button>;
 }
 ```
+
+# 怎么知道项目中使用的是npm还是yarn
+
+1. 检查锁文件
+   查看项目根目录下是否存在以下文件：
+   如果有 package-lock.json 文件 → 使用 npm
+   如果有 yarn.lock 文件 → 使用 yarn
