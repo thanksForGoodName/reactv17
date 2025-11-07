@@ -398,3 +398,38 @@ function Controls() {
    查看项目根目录下是否存在以下文件：
    如果有 package-lock.json 文件 → 使用 npm
    如果有 yarn.lock 文件 → 使用 yarn
+
+# useEffect依赖数组的含义
+
+在 React 中，useEffect 的第二个参数是依赖数组，它控制着 useEffect 何时执行：
+
+1. 不传依赖数组
+
+```javascript
+useEffect(() => {
+  // 每次组件渲染后都会执行
+});
+```
+
+意义：这种写法会导致每次组件重新渲染时都执行 useEffect 中的代码。
+
+2. 传入空的依赖数组 []
+
+```javascript
+useEffect(() => {
+  // 只在组件首次挂载时执行一次
+}, []); // 注意这里的空数组
+```
+
+意义：告诉 React 这个 useEffect 不依赖任何状态或属性的变化，因此只在组件第一次挂载（mount）时执行一次。
+后续的组件更新（re-render）不会再次触发这个 useEffect。
+
+3. 传入非空依赖数组
+
+```javascript
+useEffect(() => {
+  // 当依赖项发生变化时执行
+}, [someState, someProp]); // 依赖 someState 和 someProp
+```
+
+意义：只有当 someState 或 someProp 发生变化时，才会重新执行 useEffect。
